@@ -1,0 +1,52 @@
+@import "../../index.css";
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2em 0;
+}
+
+.nav > h1 {
+  display: inline;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+li {
+  cursor: pointer;
+  color: white;
+  margin-left: 1em;
+}
+
+li:hover {
+  color: #ededed;
+}
+
+.active {
+  position: relative;
+}
+/* border-bottom: 2px solid var(--main); } */
+
+.active:after {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  content: "";
+  background-color: var(--main);
+  height: 3px;
+  animation: width 0.3s forwards;
+}
+
+@keyframes width {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 100%;
+  }
+}

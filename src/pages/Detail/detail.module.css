@@ -1,0 +1,128 @@
+@import "../../index.css";
+
+.background {
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: scroll;
+}
+
+.background:before {
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+}
+
+.back {
+  cursor: pointer;
+  position: absolute;
+  top: 2em;
+  left: 2em;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 3em;
+  height: 3em;
+  border-radius: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.content {
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  margin: 7em 1em;
+  border-radius: 10px;
+}
+
+.content > * {
+  z-index: 3;
+}
+
+.info {
+  margin-top: 2em;
+}
+
+.image {
+  max-width: 400px;
+  height: 100%;
+  width: 100%;
+  /* height: 300px; */
+  aspect-ratio: 16 / 9;
+}
+
+h1 {
+  text-transform: uppercase;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.video {
+  width: 100%;
+}
+
+.overview {
+  color: #e3e3e3;
+  font-weight: 400;
+  margin: 1em 0;
+}
+
+.date {
+  color: white;
+}
+
+.runtime {
+  color: white;
+  margin: 0.5em 1em 0.5em 0;
+}
+
+.genre-container {
+  background-color: var(--main);
+  transform: skew(20deg);
+  padding: 0.1em 0.2em;
+  margin: 0.1em 0.5em 0 0;
+  display: inline-flex;
+}
+
+.genre {
+  transform: skew(-20deg);
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+@media only screen and (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    margin: 6em 1em;
+    padding: 2em;
+    align-items: flex-start;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    /* height: 300px; */
+    aspect-ratio: 16 / 9;
+  }
+
+  .content > * {
+    flex: 1;
+  }
+
+  .info {
+    margin-top: 1em;
+    margin-left: 2em;
+  }
+}

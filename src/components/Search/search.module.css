@@ -1,0 +1,23 @@
+@import "../../index.css";
+
+.search-container {
+  width: 100%;
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+  border-radius: 0.5em;
+  box-shadow: 1px 1px 3px 0.1px rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 0.8em 1em;
+  background: var(--lighter-background);
+}
+
+.search-container > input {
+  color: white;
+  flex: 2;
+  border: none;
+  outline: none;
+  margin-left: 1em;
+  line-height: 1.6em;
+  background: transparent;
+}
