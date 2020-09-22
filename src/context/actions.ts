@@ -7,6 +7,7 @@ export const TOGGLE_SEARCH_ACTIVE = 'TOGGLE_SEARCH_ACTIVE';
 export const START_ACTION = 'START_ACTION';
 export const SET_ERROR = 'SET_ERROR';
 export const SET_SINGLE = 'SET_SINGLE';
+export const CHANGE_TERM = 'CHANGE_TERM';
 
 export const start = () => ({
   type: START_ACTION,
@@ -15,6 +16,11 @@ export const start = () => ({
 export const setActiveTab = (tab: Tab) => ({
   type: SET_ACTIVE_TAB,
   payload: tab,
+});
+
+export const handleTermChange = (term: string) => ({
+  type: CHANGE_TERM,
+  payload: term,
 });
 
 export const setItems = (items: Movie[] | Show[]) => ({

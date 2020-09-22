@@ -60,9 +60,6 @@ describe('Search', () => {
 
     const text = 'jack';
 
-    expect(window.localStorage.getItem).toBeCalled();
-    expect(window.localStorage.getItem).toBeCalledWith('term');
-
     fireEvent.change(input, { target: { value: text } });
 
     expect(input.value).toBe(text);
@@ -72,8 +69,6 @@ describe('Search', () => {
     jest.runAllTimers();
 
     expect(onSearch).toBeCalled();
-    expect(window.localStorage.setItem).toBeCalled();
-    expect(window.localStorage.setItem).toBeCalledWith('term', text);
 
     expect(onSearch).toHaveBeenCalledWith(text);
   });

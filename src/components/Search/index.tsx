@@ -3,7 +3,11 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Tab } from '../../types';
-import { MovieContext, toggleSearchActive } from '../../context/Movie';
+import {
+  handleTermChange,
+  MovieContext,
+  toggleSearchActive,
+} from '../../context/Movie';
 
 import styles from './search.module.css';
 
@@ -13,21 +17,18 @@ type SearchProps = {
 };
 
 const Search = ({ onSearch, tab }: SearchProps) => {
-  const [term, setTerm] = useState('');
-  const { dispatch } = useContext(MovieContext);
-
-  useEffect(() => {
-    const term = localStorage.getItem('term') || '';
-    setTerm(term);
-  }, []);
+  const {
+    dispatch,
+    state: { term: searchTerm },
+  } = useContext(MovieContext);
+  const [term, setTerm] = useState(searchTerm);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+      handleTermChange(term);
       if (term.length > 2) {
         onSearch(term);
-        localStorage.setItem('term', term);
       } else {
-        localStorage.removeItem('term');
         dispatch(toggleSearchActive(false));
       }
     }, 1000);

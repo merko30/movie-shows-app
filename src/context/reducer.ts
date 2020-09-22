@@ -15,9 +15,11 @@ import {
   TOGGLE_SEARCH_ACTIVE,
   SET_SINGLE,
   SET_ERROR,
+  CHANGE_TERM,
 } from './actions';
 
 export type State = {
+  term: string;
   activeTab: Tab;
   searchResults: SearchItem[];
   searchActive: boolean;
@@ -29,6 +31,7 @@ export type State = {
 };
 
 export const initialState: State = {
+  term: '',
   activeTab: Tab.SHOWS,
   searchActive: false,
   single: null,
@@ -55,7 +58,6 @@ const reducer = (
         ...state,
         activeTab: action.payload,
       };
-
     case SET_ITEMS:
       return {
         ...state,
@@ -63,7 +65,6 @@ const reducer = (
         loading: false,
         error: null,
       };
-
     case SET_SEARCH_RESULTS:
       return {
         ...state,
@@ -80,6 +81,11 @@ const reducer = (
         ...state,
         loading: false,
         single: action.payload,
+      };
+    case CHANGE_TERM:
+      return {
+        ...state,
+        term: action.payload,
       };
     case SET_ERROR:
       return {

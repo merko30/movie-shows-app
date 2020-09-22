@@ -30,7 +30,11 @@ const Item = ({ item }: ItemProps) => {
             {isMovie ? (item as Movie).title : (item as Show).name}
           </h1>
           {item.vote_average !== undefined && (
-            <InfoItem color="orange" icon={faStar} label={item.vote_average} />
+            <InfoItem
+              color="orange"
+              icon={faStar}
+              label={`${item.vote_average}/10`}
+            />
           )}
         </div>
       </div>
