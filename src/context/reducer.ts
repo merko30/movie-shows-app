@@ -5,7 +5,8 @@ import {
   Show,
   MovieDetail,
   ShowDetail,
-} from "../types";
+} from '../types';
+
 import {
   START_ACTION,
   SET_ACTIVE_TAB,
@@ -14,9 +15,9 @@ import {
   TOGGLE_SEARCH_ACTIVE,
   SET_SINGLE,
   SET_ERROR,
-} from "./actions";
+} from './actions';
 
-export interface State {
+export type State = {
   activeTab: Tab;
   searchResults: SearchItem[];
   searchActive: boolean;
@@ -25,7 +26,7 @@ export interface State {
   single: MovieDetail | ShowDetail | null;
   loading: boolean;
   error: string | null;
-}
+};
 
 export const initialState: State = {
   activeTab: Tab.SHOWS,

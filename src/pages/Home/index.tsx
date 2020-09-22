@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react';
 
 import {
   MovieContext,
@@ -7,17 +7,12 @@ import {
   setError,
   start,
   toggleSearchActive,
-} from "../../context/Movie";
+} from '../../context/Movie';
+import { Tab } from '../../types';
+import { fetchTopRated, search } from '../../api';
+import { Grid, Search, Loading, Header, Error } from '../../components';
 
-import { Tab } from "../../types";
-
-import { fetchTopRated, search } from "../../api";
-
-import { Grid, Search, Loading, Header, Error } from "../../components";
-
-interface HomeProps {}
-
-const Home = (props: HomeProps) => {
+const Home = () => {
   const {
     state: {
       searchResults,
@@ -35,16 +30,18 @@ const Home = (props: HomeProps) => {
     (async () => {
       if (!searchActive) {
         dispatch(start());
+
         try {
           const response = await (await fetchTopRated(activeTab)).json();
+
           if (response.results) {
             dispatch(setItems(response.results));
           } else {
             // messages are not relevant for the users
-            dispatch(setError("Something went wrong"));
+            dispatch(setError('Something went wrong'));
           }
         } catch (error) {
-          dispatch(setError("Something went wrong"));
+          dispatch(setError('Something went wrong'));
         }
       }
     })();
@@ -53,23 +50,25 @@ const Home = (props: HomeProps) => {
 
   const onSearch = async (term: string) => {
     dispatch(start());
+
     try {
       const response = await (await search(term)).json();
       dispatch(toggleSearchActive(true));
+
       if (response.results) {
         dispatch(setSearchResults(response.results));
       } else {
-        dispatch(setError("Something went wrong"));
+        dispatch(setError('Something went wrong'));
       }
     } catch (error) {
-      dispatch(setError("Something went wrong"));
+      dispatch(setError('Something went wrong'));
     }
   };
 
   return (
-    <div className={`container`} style={{ paddingBottom: "2em" }}>
+    <div className="container" style={{ paddingBottom: '2em' }}>
       <Header />
-      <Search onSearch={onSearch} tab={activeTab} />
+      <Search tab={activeTab} onSearch={onSearch} />
       {loading && <Loading />}
       {error && <Error message={error} />}
 

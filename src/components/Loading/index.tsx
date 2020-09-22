@@ -1,17 +1,16 @@
-import React from "react";
-import styles from "./loading.module.css";
+import React from 'react';
 
-interface LoadingProps {}
+import styles from './loading.module.css';
 
-const Loading = (props: LoadingProps) => {
+const Loading = () => {
   return (
-    <div className={styles["sk-chase"]} data-testid="loading">
-      <div className={styles["sk-chase-dot"]}></div>
-      <div className={styles["sk-chase-dot"]}></div>
-      <div className={styles["sk-chase-dot"]}></div>
-      <div className={styles["sk-chase-dot"]}></div>
-      <div className={styles["sk-chase-dot"]}></div>
-      <div className={styles["sk-chase-dot"]}></div>
+    <div className={styles['sk-chase']} data-testid="loading">
+      <div className={styles['sk-chase-dot']} />
+      <div className={styles['sk-chase-dot']} />
+      <div className={styles['sk-chase-dot']} />
+      <div className={styles['sk-chase-dot']} />
+      <div className={styles['sk-chase-dot']} />
+      <div className={styles['sk-chase-dot']} />
     </div>
   );
 };

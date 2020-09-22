@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { Grid } from "../components";
-import customRender, { initialValue as value } from "../utils/customRender";
+import { Grid } from '../components';
+import customRender, { initialValue as value } from '../utils/customRender';
 
-describe("Grid", () => {
-  test("should render right number of items", async () => {
+describe('Grid', () => {
+  test('should render right number of items', async () => {
     const { getAllByText } = customRender(
       <Grid
         movies={new Array(10).fill(0).map((_, i) => ({

@@ -1,12 +1,12 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer } from 'react';
 
-import reducer, { State, initialState } from "./reducer";
-export * from "./actions";
+import reducer, { State, initialState } from './reducer';
+export * from './actions';
 
-export interface MovieContextI {
+export type MovieContextI = {
   state: State;
   dispatch: ({ type }: { type: string; payload?: any }) => void;
-}
+};
 
 export const MovieContext = createContext({} as MovieContextI);
 

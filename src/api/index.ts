@@ -1,4 +1,4 @@
-import { Tab } from "../types";
+import { Tab } from '../types';
 
 export const fetchTopRated = async (type: Tab) => {
   return await fetch(

@@ -1,35 +1,31 @@
-import React, { useContext, useEffect } from "react";
-import { RouteComponentProps } from "react-router-dom";
-import ReactPlayer from "react-player";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import ReactPlayer from 'react-player';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCalendar,
   faChevronLeft,
   faClock,
   faStar,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
-import InfoItem from "../../components/InfoItem";
+import InfoItem from '../../components/InfoItem';
+import { fetchSingle } from '../../api';
+import { MovieContext, setSingle, start, setError } from '../../context/Movie';
+import { Loading } from '../../components';
+import { MovieDetail } from '../../types';
+import { formatMinutes, formatDateString } from '../../utils';
 
-import { fetchSingle } from "../../api";
-import { MovieContext, setSingle, start, setError } from "../../context/Movie";
+import styles from './detail.module.css';
 
-import { Loading } from "../../components";
-
-import { MovieDetail } from "../../types";
-
-import { formatMinutes, formatDateString } from "../../utils";
-
-import styles from "./detail.module.css";
-
-export interface Params {
+export type Params = {
   id: string;
   type: string;
-}
+};
 
 const YOUTUBE_URL = `https://www.youtube.com/watch?v=`;
 
-interface DetailProps extends RouteComponentProps<Params> {}
+type DetailProps = {} & RouteComponentProps<Params>;
 
 const Detail = ({
   history,
@@ -45,6 +41,7 @@ const Detail = ({
   useEffect(() => {
     (async () => {
       dispatch(start());
+
       try {
         const data = await (await fetchSingle(type, id)).json();
         dispatch(setSingle(data));
@@ -55,10 +52,11 @@ const Detail = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, type]);
 
-  const isMovie = type === "movie";
+  const isMovie = type === 'movie';
   const mov = single as MovieDetail;
+
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: '100%' }}>
       {loading && <Loading />}
       {error && <p>{error}</p>}
       {single && (
@@ -73,19 +71,19 @@ const Detail = ({
           <span
             className={styles.back}
             data-testid="back"
-            onClick={() => history.push("/")}
+            onClick={() => history.push('/')}
           >
-            <FontAwesomeIcon icon={faChevronLeft} size="1x" color="white" />
+            <FontAwesomeIcon color="white" icon={faChevronLeft} size="1x" />
           </span>
-          <div className={styles.overlay}></div>
+          <div className={styles.overlay} />
           <div className={styles.content}>
             {single.videos.results.length &&
-            single.videos.results[0].site === "youtube" ? (
+            single.videos.results[0].site === 'youtube' ? (
               <div className={styles.video}>
                 <ReactPlayer
                   data-testid="video"
-                  width="100%"
                   url={`${YOUTUBE_URL}${single.videos!.results[0].key}`}
+                  width="100%"
                 />
               </div>
             ) : (
@@ -98,9 +96,9 @@ const Detail = ({
             <div className={styles.info}>
               <div>
                 {single.genres &&
-                  single.genres.map((g, i) => {
+                  single.genres.map((g) => {
                     return (
-                      <span className={styles["genre-container"]} key={g.id}>
+                      <span key={g.id} className={styles['genre-container']}>
                         <p className={styles.genre}>{g.name}</p>
                       </span>
                     );
@@ -116,9 +114,9 @@ const Detail = ({
                 )}
                 {single.vote_average && (
                   <InfoItem
-                    label={`${single.vote_average}/10`}
-                    icon={faStar}
                     color="orange"
+                    icon={faStar}
+                    label={`${single.vote_average}/10`}
                   />
                 )}
                 {isMovie && mov.release_date ? (

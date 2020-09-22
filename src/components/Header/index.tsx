@@ -1,19 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import styles from "./header.module.css";
+import { MovieContext, setActiveTab } from '../../context/Movie';
+import { Tab } from '../../types';
 
-import { MovieContext, setActiveTab } from "../../context/Movie";
-import { Tab } from "../../types";
+import styles from './header.module.css';
 
-interface HeaderProps {}
-
-const Header = (props: HeaderProps) => {
+const Header = () => {
   const {
     dispatch,
     state: { activeTab },
   } = useContext(MovieContext);
 
   const areMoviesSelected = activeTab === Tab.MOVIES;
+
   return (
     <header className={styles.container}>
       <nav className={styles.nav}>

@@ -1,31 +1,31 @@
-import React from "react";
-import { Item } from "..";
+import React from 'react';
 
+import { Item } from '..';
 import {
   Movie,
   Movie as MovieI,
   SearchItem,
   Show,
   Show as ShowI,
-} from "../../types";
+} from '../../types';
 
-import styles from "./grid.module.css";
+import styles from './grid.module.css';
 
-interface Search {
+type Search = {
   searchResults: SearchItem[];
   movies?: never;
   shows?: never;
-}
-interface Movies {
+};
+type Movies = {
   movies: MovieI[];
   shows?: never;
   searchResults?: never;
-}
-interface Shows {
+};
+type Shows = {
   shows: ShowI[];
   movies?: never;
   searchResults?: never;
-}
+};
 
 type GridProps = Search | Movies | Shows;
 
@@ -36,11 +36,11 @@ const Grid = ({ movies, shows, searchResults }: GridProps) => {
       {shows && shows.map((show) => <Item key={show.id} item={show} />)}
       {searchResults &&
         searchResults.map((item) => {
-          if (item.media_type === "tv") {
+          if (item.media_type === 'tv') {
             return <Item key={item.id} item={item as Show} />;
-          } else {
-            return <Item key={item.id} item={item as Movie} />;
           }
+
+          return <Item key={item.id} item={item as Movie} />;
         })}
     </div>
   );

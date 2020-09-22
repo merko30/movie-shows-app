@@ -1,10 +1,11 @@
-import { getByTestId, wait, waitForDomChange } from "@testing-library/react";
-import React from "react";
-import { fetchTopRated } from "../api";
-import { initialState } from "../context/reducer";
-import { Home } from "../pages";
-import { Tab } from "../types";
-import customRender, { initialValue as value } from "../utils/customRender";
+import { wait } from '@testing-library/react';
+import React from 'react';
+
+import { fetchTopRated } from '../api';
+import { initialState } from '../context/reducer';
+import { Home } from '../pages';
+import { Tab } from '../types';
+import customRender, { initialValue as value } from '../utils/customRender';
 
 const setup = () => {
   const utils = customRender(<Home />, { value });
@@ -14,10 +15,10 @@ const setup = () => {
   };
 };
 
-jest.mock("../api/index");
+jest.mock('../api/index');
 
-describe("Home", () => {
-  test("should fetch top rated movies/tv", async () => {
+describe('Home', () => {
+  test('should fetch top rated movies/tv', async () => {
     setup();
 
     await wait();
@@ -26,7 +27,7 @@ describe("Home", () => {
     expect(fetchTopRated).toHaveBeenCalledWith(Tab.SHOWS);
   });
 
-  test("should render appropriate list based on active tab", async () => {
+  test('should render appropriate list based on active tab', async () => {
     const vl = {
       ...value,
       state: {
@@ -77,7 +78,7 @@ describe("Home", () => {
     expect(getByText(/no results/i)).toBeVisible();
   });
 
-  test("should show loading spinner if data is being fetched", () => {
+  test('should show loading spinner if data is being fetched', () => {
     const { getByTestId } = customRender(<Home />, {
       value: {
         ...value,
@@ -85,11 +86,11 @@ describe("Home", () => {
       },
     });
 
-    expect(getByTestId("loading")).toBeVisible();
+    expect(getByTestId('loading')).toBeVisible();
   });
 
-  test("should show error message if error occurres", () => {
-    const error = "Something went wrong";
+  test('should show error message if error occurres', () => {
+    const error = 'Something went wrong';
     const { getByText } = customRender(<Home />, {
       value: {
         ...value,

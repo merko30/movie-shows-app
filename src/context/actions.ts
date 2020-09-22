@@ -1,12 +1,12 @@
-import { Tab, Movie, Show } from "../types";
+import { Tab, Movie, Show } from '../types';
 
-export const SET_ACTIVE_TAB = "SET_ACTIVE_TAB";
-export const SET_ITEMS = "SET_ITEMS";
-export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
-export const TOGGLE_SEARCH_ACTIVE = "TOGGLE_SEARCH_ACTIVE";
-export const START_ACTION = "START_ACTION";
-export const SET_ERROR = "SET_ERROR";
-export const SET_SINGLE = "SET_SINGLE";
+export const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
+export const SET_ITEMS = 'SET_ITEMS';
+export const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
+export const TOGGLE_SEARCH_ACTIVE = 'TOGGLE_SEARCH_ACTIVE';
+export const START_ACTION = 'START_ACTION';
+export const SET_ERROR = 'SET_ERROR';
+export const SET_SINGLE = 'SET_SINGLE';
 
 export const start = () => ({
   type: START_ACTION,

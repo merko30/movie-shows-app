@@ -8,14 +8,13 @@
     "prettier",
     "prettier/@typescript-eslint"
   ],
-  "plugins": ["@typescript-eslint", "react-hooks", "header"],
+  "plugins": ["@typescript-eslint", "react-hooks"],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
   "rules": {
-    "header/header": [2, "block", [{ "pattern": " \\* Author : .*" }]],
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
@@ -43,6 +42,8 @@
         "newlines-between": "always"
       }
     ],
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": ["warn"],
     "no-case-declarations": "warn",
     "no-console": "warn",
     "no-debugger": "warn",

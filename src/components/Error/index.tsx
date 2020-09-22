@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./error.module.css";
+import styles from './error.module.css';
 
-interface ErrorProps {
+type ErrorProps = {
   message: string;
-}
+};
 
 const Error = ({ message }: ErrorProps) => {
   return <h1 className={styles.error}>{message}</h1>;

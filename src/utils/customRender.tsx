@@ -1,32 +1,32 @@
-import React from "react";
+import React from 'react';
 import {
   RenderOptions,
   render,
   Queries,
   RenderResult,
-} from "@testing-library/react";
+} from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory, MemoryHistory } from 'history';
 
-import { MovieContext, MovieContextI } from "../context/Movie";
-import { initialState } from "../context/reducer";
-import { Router } from "react-router-dom";
-import { createMemoryHistory, MemoryHistory } from "history";
+import { MovieContext, MovieContextI } from '../context/Movie';
+import { initialState } from '../context/reducer';
 
-export interface Props {
+export type Props = {
   value?: MovieContextI;
   options?: Pick<
     RenderOptions<Queries>,
-    "container" | "baseElement" | "hydrate" | "wrapper"
+    'container' | 'baseElement' | 'hydrate' | 'wrapper'
   >;
   route?: string;
   history?: MemoryHistory;
-}
+};
 
-interface Value {
+type Value = {
   value: MovieContextI;
   history: MemoryHistory;
-}
+};
 
-type Render = Omit<RenderResult, "rerender"> &
+type Render = Omit<RenderResult, 'rerender'> &
   Value & {
     rerender: (ui: React.ReactElement, props: Props) => void;
   };
@@ -44,7 +44,7 @@ const customRender = (
   {
     value = initialValue,
     options = {},
-    history = createMemoryHistory({ initialEntries: ["/"] }),
+    history = createMemoryHistory({ initialEntries: ['/'] }),
   }: Props
 ): Render => {
   const rendered = render(
@@ -54,6 +54,7 @@ const customRender = (
     options
   );
   const { rerender, ...rest } = rendered;
+
   return {
     ...rest,
     rerender: (ui, props) => {

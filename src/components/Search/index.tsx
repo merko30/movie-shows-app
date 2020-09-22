@@ -1,23 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext, useEffect, useState } from 'react';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from "./search.module.css";
+import { Tab } from '../../types';
+import { MovieContext, toggleSearchActive } from '../../context/Movie';
 
-import { Tab } from "../../types";
-import { MovieContext, toggleSearchActive } from "../../context/Movie";
+import styles from './search.module.css';
 
-interface SearchProps {
+type SearchProps = {
   onSearch: (term: string) => Promise<void>;
   tab: Tab;
-}
+};
 
 const Search = ({ onSearch, tab }: SearchProps) => {
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState('');
   const { dispatch } = useContext(MovieContext);
 
   useEffect(() => {
-    const term = localStorage.getItem("term") || "";
+    const term = localStorage.getItem('term') || '';
     setTerm(term);
   }, []);
 
@@ -25,9 +25,9 @@ const Search = ({ onSearch, tab }: SearchProps) => {
     const timeout = setTimeout(() => {
       if (term.length > 2) {
         onSearch(term);
-        localStorage.setItem("term", term);
+        localStorage.setItem('term', term);
       } else {
-        localStorage.removeItem("term");
+        localStorage.removeItem('term');
         dispatch(toggleSearchActive(false));
       }
     }, 1000);
@@ -37,11 +37,11 @@ const Search = ({ onSearch, tab }: SearchProps) => {
   }, [tab, term]);
 
   return (
-    <div className={styles["search-container"]}>
+    <div className={styles['search-container']}>
       <FontAwesomeIcon icon={faSearch} />
       <input
-        placeholder="Search..."
         className={styles.input}
+        placeholder="Search..."
         value={term}
         onChange={(e) => setTerm(e.target.value)}
       />

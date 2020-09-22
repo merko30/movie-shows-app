@@ -1,27 +1,28 @@
-export interface Show {
+export type Show = {
   original_name: string;
   name: string;
   vote_count: number;
   backdrop_path?: string;
   id: number;
   vote_average: number;
-}
+};
 
-export interface Movie extends Partial<Show> {
+export type Movie = {
   original_title: string;
   title: string;
-}
+} & Partial<Show>;
 
-export interface SearchItem extends Partial<Movie>, Partial<Show> {
+export type SearchItem = {
   media_type: string;
-}
+} & Partial<Movie> &
+  Partial<Show>;
 
-export interface Genre {
+export type Genre = {
   id: number;
   name: string;
-}
+};
 
-export interface ShowDetail {
+export type ShowDetail = {
   backdrop_path?: string;
   first_air_date: string;
   genres: Genre[];
@@ -36,25 +37,25 @@ export interface ShowDetail {
   vote_average: number;
   vote_count: number;
   videos: { results: Video[] };
-}
+};
 
-interface SpokenLanguage {
+type SpokenLanguage = {
   iso_639_1: string;
   name: string;
-}
+};
 
-interface ProductionCountry {
+type ProductionCountry = {
   iso_3166_1: string;
   name: string;
-}
+};
 
-interface Video {
+type Video = {
   id: string;
   key: string;
   site: string;
-}
+};
 
-export interface MovieDetail extends Partial<ShowDetail> {
+export type MovieDetail = {
   adult: boolean;
   belongs_to_collection?: object;
   budget: number;
@@ -73,9 +74,9 @@ export interface MovieDetail extends Partial<ShowDetail> {
   title: string;
   video: boolean;
   videos: { results: Video[] };
-}
+} & Partial<ShowDetail>;
 
 export enum Tab {
-  MOVIES = "movie",
-  SHOWS = "tv",
+  MOVIES = 'movie',
+  SHOWS = 'tv',
 }
