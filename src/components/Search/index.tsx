@@ -25,7 +25,6 @@ const Search = ({ onSearch, tab }: SearchProps) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      handleTermChange(term);
       if (term.length > 2) {
         onSearch(term);
       } else {
@@ -33,7 +32,10 @@ const Search = ({ onSearch, tab }: SearchProps) => {
       }
     }, 1000);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      dispatch(handleTermChange(term));
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab, term]);
 

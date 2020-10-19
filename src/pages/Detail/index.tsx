@@ -38,6 +38,8 @@ const Detail = ({
     dispatch,
   } = useContext(MovieContext);
 
+  console.log(single);
+
   useEffect(() => {
     (async () => {
       dispatch(start());
@@ -78,7 +80,7 @@ const Detail = ({
           <div className={styles.overlay} />
           <div className={styles.content}>
             {single.videos.results.length &&
-            single.videos.results[0].site === 'youtube' ? (
+            single.videos.results[0].site === 'YouTube' ? (
               <div className={styles.video}>
                 <ReactPlayer
                   data-testid="video"
