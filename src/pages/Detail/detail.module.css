@@ -1,4 +1,4 @@
-@import "../../index.css";
+@import '../../index.css';
 
 .background {
   height: 100%;
@@ -9,7 +9,7 @@
 }
 
 .background:before {
-  content: "";
+  content: '';
   top: 0;
   left: 0;
   right: 0;
@@ -55,6 +55,7 @@
   max-width: 400px;
   height: 100%;
   width: 100%;
+  object-fit: contain;
   /* height: 300px; */
   aspect-ratio: 16 / 9;
 }

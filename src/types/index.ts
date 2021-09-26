@@ -44,11 +44,6 @@ type SpokenLanguage = {
   name: string;
 };
 
-type ProductionCountry = {
-  iso_3166_1: string;
-  name: string;
-};
-
 type Video = {
   id: string;
   key: string;
@@ -57,7 +52,6 @@ type Video = {
 
 export type MovieDetail = {
   adult: boolean;
-  belongs_to_collection?: object;
   budget: number;
   genres: Genre[];
   homepage?: string;

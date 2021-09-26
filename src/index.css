@@ -8,7 +8,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Raleway", sans-serif;
+  /* overflow: hidden; */
+  font-family: 'Raleway', sans-serif;
 }
 
 html,
@@ -20,7 +21,8 @@ body,
 
 #root {
   background: var(--background);
-  overflow: scroll;
+  overflow-y: auto;
+  /* overflow-x: hidden; */
 }
 
 .container {

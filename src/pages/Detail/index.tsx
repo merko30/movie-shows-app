@@ -56,7 +56,7 @@ const Detail = ({
   const mov = single as MovieDetail;
 
   return (
-    <div style={{ height: '100%' }}>
+    <div style={{ height: '100%',overflowX:"hidden" }}>
       {loading && <Loading />}
       {error && <p>{error}</p>}
       {single && (

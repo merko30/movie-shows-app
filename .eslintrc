@@ -42,12 +42,6 @@
       }
     ],
     "import/no-extraneous-dependencies": "warn",
-    "import/order": [
-      "warn",
-      {
-        "newlines-between": "always"
-      }
-    ],
     "camelcase": "off",
     "no-case-declarations": "warn",
     "no-console": "warn",

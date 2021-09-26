@@ -1,8 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import Detail from './pages/Detail';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+
 import MovieProvider from './context/Movie';
-import { Detail, Home, NotFound } from './pages';
 
 function App():JSX.Element {
   return (
