@@ -25,20 +25,18 @@ export type Params = {
 
 const YOUTUBE_URL = `https://www.youtube.com/watch?v=`;
 
-type DetailProps = {} & RouteComponentProps<Params>;
+type DetailProps =  RouteComponentProps<Params>;
 
 const Detail = ({
   history,
   match: {
     params: { type, id },
   },
-}: DetailProps) => {
+}: DetailProps):JSX.Element => {
   const {
     state: { single, loading, error },
     dispatch,
   } = useContext(MovieContext);
-
-  console.log(single);
 
   useEffect(() => {
     (async () => {
@@ -48,10 +46,10 @@ const Detail = ({
         const data = await (await fetchSingle(type, id)).json();
         dispatch(setSingle(data));
       } catch (error) {
-        dispatch(setError(error));
+        
+        dispatch(setError(error as string));
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, type]);
 
   const isMovie = type === 'movie';

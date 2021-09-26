@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MovieProvider from './context/Movie';
 import { Detail, Home, NotFound } from './pages';
 
-function App() {
+function App():JSX.Element {
   return (
     <MovieProvider>
       <Router>

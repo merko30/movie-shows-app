@@ -1,4 +1,10 @@
 {
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
   "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
@@ -43,7 +49,6 @@
       }
     ],
     "camelcase": "off",
-    "@typescript-eslint/camelcase": ["warn"],
     "no-case-declarations": "warn",
     "no-console": "warn",
     "no-debugger": "warn",
