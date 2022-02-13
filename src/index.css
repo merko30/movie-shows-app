@@ -1,9 +1,3 @@
-:root {
-  --background: #1f1f1f;
-  --lighter-background: #4a4b4b;
-  --main: #f90e38;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -20,9 +14,7 @@ body,
 }
 
 #root {
-  background: var(--background);
-  overflow-y: auto;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 .container {

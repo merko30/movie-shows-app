@@ -40,7 +40,7 @@
         "variables": true
       }
     ],
-    "import/no-extraneous-dependencies": "warn",
+    "import/no-extraneous-dependencies": "off",
     "camelcase": "off",
     "no-case-declarations": "warn",
     "no-console": "warn",

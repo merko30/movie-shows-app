@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react'
 
 import {
   MovieContext,
@@ -7,10 +7,10 @@ import {
   setError,
   start,
   toggleSearchActive,
-} from '../../context/Movie';
-import { Tab } from '../../types';
-import { fetchTopRated, search } from '../../api';
-import { Grid, Search, Loading, Header, Error } from '../../components';
+} from 'context/Movie'
+import { Tab } from 'types'
+import { fetchTopRated, search } from 'api'
+import { Grid, Search, Loading, Header, Error } from 'components'
 
 const Home = () => {
   const {
@@ -24,46 +24,46 @@ const Home = () => {
       error,
     },
     dispatch,
-  } = useContext(MovieContext);
+  } = useContext(MovieContext)
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       if (!searchActive) {
-        dispatch(start());
+        dispatch(start())
 
         try {
-          const response = await (await fetchTopRated(activeTab)).json();
+          const response = await (await fetchTopRated(activeTab)).json()
 
           if (response.results) {
-            dispatch(setItems(response.results));
+            dispatch(setItems(response.results))
           } else {
             // messages are not relevant for the users
-            dispatch(setError('Something went wrong'));
+            dispatch(setError('Something went wrong'))
           }
         } catch (error) {
-          dispatch(setError('Something went wrong'));
+          dispatch(setError('Something went wrong'))
         }
       }
-    })();
+    })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, searchActive]);
+  }, [activeTab, searchActive])
 
   const onSearch = async (term: string) => {
-    dispatch(start());
+    dispatch(start())
 
     try {
-      const response = await (await search(term)).json();
-      dispatch(toggleSearchActive(true));
+      const response = await (await search(term)).json()
+      dispatch(toggleSearchActive(true))
 
       if (response.results) {
-        dispatch(setSearchResults(response.results));
+        dispatch(setSearchResults(response.results))
       } else {
-        dispatch(setError('Something went wrong'));
+        dispatch(setError('Something went wrong'))
       }
     } catch (error) {
-      dispatch(setError('Something went wrong'));
+      dispatch(setError('Something went wrong'))
     }
-  };
+  }
 
   return (
     <div className="container" style={{ paddingBottom: '2em' }}>
@@ -87,7 +87,7 @@ const Home = () => {
         <Grid shows={shows} />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
