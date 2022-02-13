@@ -1,42 +1,32 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Movie, Show } from '../../types'
-import InfoItem from '../InfoItem'
+import { Movie, Show, SearchItem } from 'types'
 
 import styles from './item.module.css'
 
-type ItemProps = { item: Movie | Show }
+type ItemProps = { item: Movie | Show | SearchItem }
 
 const Item = ({ item }: ItemProps) => {
-  const isMovie = Object.prototype.hasOwnProperty.call(item, 'title')
-
+  const isMovie = useMemo(() => 'title' in item, [item])
   // const isMovie = !!item.hasOwnProperty('title');
   const type = isMovie ? 'movie' : 'tv'
 
   return (
     <Link className={styles.item} to={`/${type}/${item.id}`}>
       <div
-        className={styles['item-background']}
+        className={styles.wrapper}
         style={{
           backgroundImage: item.backdrop_path
             ? `url('https://image.tmdb.org/t/p/w500${item.backdrop_path}')`
             : `url(/camera.jpg)`,
         }}
       >
-        <div className={styles.content}>
-          <h1 className={styles.title}>
-            {isMovie ? (item as Movie).title : (item as Show).name}
-          </h1>
-          {item.vote_average !== undefined && (
-            <InfoItem
-              // color="orange"
-              // icon={faStar as IconProp}
-              label={`${item.vote_average}/10`}
-            />
-          )}
-        </div>
+        <span className={styles.rating}>&#9733; {item.vote_average}</span>
       </div>
+      <h1 className={styles.title}>
+        {isMovie ? (item as Movie).title : (item as Show).name}
+      </h1>
     </Link>
   )
 }

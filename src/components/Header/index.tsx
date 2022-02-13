@@ -22,23 +22,25 @@ const Header = ({ onSearch }: HeaderProps) => {
 
   return (
     <header>
-      <Search tab={activeTab} onSearch={onSearch} />
-      <nav className="flex itemsEnd">
-        <ul>
-          <li
-            className={!areMoviesSelected ? styles.active : ''}
-            onClick={() => dispatch(setActiveTab(Tab.SHOWS))}
-          >
-            TV shows
-          </li>
-          <li
-            className={areMoviesSelected ? styles.active : ''}
-            onClick={() => dispatch(setActiveTab(Tab.MOVIES))}
-          >
-            Movies
-          </li>
-        </ul>
-      </nav>
+      <div className="container">
+        <Search tab={activeTab} onSearch={onSearch} />
+        <nav className="flex itemsEnd">
+          <ul>
+            <li
+              className={!areMoviesSelected ? styles.active : ''}
+              onClick={() => dispatch(setActiveTab(Tab.SHOWS))}
+            >
+              TV shows
+            </li>
+            <li
+              className={areMoviesSelected ? styles.active : ''}
+              onClick={() => dispatch(setActiveTab(Tab.MOVIES))}
+            >
+              Movies
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   )
 }

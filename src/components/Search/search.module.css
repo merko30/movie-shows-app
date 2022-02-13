@@ -1,5 +1,5 @@
 .container {
-  color: var(--lightGray, white);
+  color: var(--text);
   margin-bottom: 2rem;
 }
 
@@ -8,12 +8,12 @@
   border: none;
   outline: none;
   background: transparent;
-  color: white;
+  color: var(--text);
   font-size: 1.125rem;
 }
 
 .container input::placeholder {
-  color: var(--lightGray, white);
+  color: var(--text);
   font-weight: 300;
   opacity: 1; /* Firefox */
 }

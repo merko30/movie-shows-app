@@ -9,15 +9,17 @@ import MovieProvider from './context/Movie'
 
 function App(): JSX.Element {
   return (
-    <MovieProvider>
-      <Router>
-        <Switch>
-          <Route component={Home} path="/" exact />
-          <Route component={Detail} path="/:type/:id" />
-          <Route component={NotFound} path="*" />
-        </Switch>
-      </Router>
-    </MovieProvider>
+    <div className="wrapper">
+      <MovieProvider>
+        <Router>
+          <Switch>
+            <Route component={Home} path="/" exact />
+            <Route component={Detail} path="/:type/:id" />
+            <Route component={NotFound} path="*" />
+          </Switch>
+        </Router>
+      </MovieProvider>
+    </div>
   )
 }
 

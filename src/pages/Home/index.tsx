@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 
 import {
   MovieContext,
@@ -8,9 +8,14 @@ import {
   start,
   toggleSearchActive,
 } from 'context/Movie'
-import { Tab } from 'types'
+
+import { Movie, SearchItem, Show, Tab } from 'types'
+
 import { fetchTopRated, search } from 'api'
-import { Grid, Loading, Header, Error } from 'components'
+
+import { Loading, Header, Error, Item } from 'components'
+
+import styles from './home.module.css'
 
 const Home = () => {
   const {
@@ -26,8 +31,24 @@ const Home = () => {
     dispatch,
   } = useContext(MovieContext)
 
+  const active = useMemo(() => {
+    if (searchActive) {
+      return searchResults
+    } else {
+      if (activeTab === Tab.MOVIES) {
+        return movies
+      }
+
+      return shows
+    }
+  }, [activeTab, movies, shows, searchResults])
+
+  console.log(active)
+
   useEffect(() => {
-    ;(async () => {
+    const fetchData = async () => {
+      console.log('calling')
+
       if (!searchActive) {
         dispatch(start())
 
@@ -44,8 +65,9 @@ const Home = () => {
           dispatch(setError('Something went wrong'))
         }
       }
-    })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+
+    fetchData()
   }, [activeTab, searchActive])
 
   const onSearch = async (term: string) => {
@@ -66,25 +88,20 @@ const Home = () => {
   }
 
   return (
-    <div style={{ paddingBottom: '2em' }}>
+    <div>
       <Header onSearch={onSearch} />
-      {loading && <Loading />}
-      {error && <Error message={error} />}
+      <div className="content">
+        <div className="container">
+          {loading && <Loading />}
+          {error && <Error message={error} />}
 
-      {searchActive &&
-        !error &&
-        (searchResults.length > 0 ? (
-          <Grid searchResults={searchResults} />
-        ) : (
-          <h1>No results</h1>
-        ))}
-
-      {!searchActive && activeTab === Tab.MOVIES && movies.length > 0 && (
-        <Grid movies={movies} />
-      )}
-      {!searchActive && activeTab === Tab.SHOWS && shows.length > 0 && (
-        <Grid shows={shows} />
-      )}
+          <div className={styles.grid}>
+            {(active as Array<Show | Movie | SearchItem>).map((item) => {
+              return <Item key={item.id} item={item} />
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
