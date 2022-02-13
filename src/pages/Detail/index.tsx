@@ -1,62 +1,63 @@
-import React, { useContext, useEffect } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import ReactPlayer from 'react-player';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext, useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import ReactPlayer from 'react-player'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+
 import {
   faCalendar,
   faChevronLeft,
   faClock,
   faStar,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 
-import InfoItem from '../../components/InfoItem';
-import { fetchSingle } from '../../api';
-import { MovieContext, setSingle, start, setError } from '../../context/Movie';
-import { Loading } from '../../components';
-import { MovieDetail } from '../../types';
-import { formatMinutes, formatDateString } from '../../utils';
+import InfoItem from '../../components/InfoItem'
+import { fetchSingle } from '../../api'
+import { MovieContext, setSingle, start, setError } from '../../context/Movie'
+import { Loading } from '../../components'
+import { MovieDetail } from '../../types'
+import { formatMinutes, formatDateString } from '../../utils'
 
-import styles from './detail.module.css';
+import styles from './detail.module.css'
 
 export type Params = {
-  id: string;
-  type: string;
-};
+  id: string
+  type: string
+}
 
-const YOUTUBE_URL = `https://www.youtube.com/watch?v=`;
+const YOUTUBE_URL = `https://www.youtube.com/watch?v=`
 
-type DetailProps =  RouteComponentProps<Params>;
+type DetailProps = RouteComponentProps<Params>
 
 const Detail = ({
   history,
   match: {
     params: { type, id },
   },
-}: DetailProps):JSX.Element => {
+}: DetailProps): JSX.Element => {
   const {
     state: { single, loading, error },
     dispatch,
-  } = useContext(MovieContext);
+  } = useContext(MovieContext)
 
   useEffect(() => {
-    (async () => {
-      dispatch(start());
+    ;(async () => {
+      dispatch(start())
 
       try {
-        const data = await (await fetchSingle(type, id)).json();
-        dispatch(setSingle(data));
+        const data = await (await fetchSingle(type, id)).json()
+        dispatch(setSingle(data))
       } catch (error) {
-        
-        dispatch(setError(error as string));
+        dispatch(setError(error as string))
       }
-    })();
-  }, [id, type]);
+    })()
+  }, [id, type])
 
-  const isMovie = type === 'movie';
-  const mov = single as MovieDetail;
+  const isMovie = type === 'movie'
+  const mov = single as MovieDetail
 
   return (
-    <div style={{ height: '100%',overflowX:"hidden" }}>
+    <div style={{ height: '100%', overflowX: 'hidden' }}>
       {loading && <Loading />}
       {error && <p>{error}</p>}
       {single && (
@@ -73,7 +74,11 @@ const Detail = ({
             data-testid="back"
             onClick={() => history.push('/')}
           >
-            <FontAwesomeIcon color="white" icon={faChevronLeft} size="1x" />
+            <FontAwesomeIcon
+              color="white"
+              icon={faChevronLeft as IconProp}
+              size="1x"
+            />
           </span>
           <div className={styles.overlay} />
           <div className={styles.content}>
@@ -101,32 +106,32 @@ const Detail = ({
                       <span key={g.id} className={styles['genre-container']}>
                         <p className={styles.genre}>{g.name}</p>
                       </span>
-                    );
+                    )
                   })}
               </div>
               <h1>{isMovie ? mov.title : single.name}</h1>
               <div className="flex itemsCenter">
                 {isMovie && mov.runtime && (
                   <InfoItem
-                    icon={faClock}
+                    icon={faClock as IconProp}
                     label={formatMinutes(mov.runtime!)}
                   />
                 )}
                 {single.vote_average && (
                   <InfoItem
                     color="orange"
-                    icon={faStar}
+                    icon={faStar as IconProp}
                     label={`${single.vote_average}/10`}
                   />
                 )}
                 {isMovie && mov.release_date ? (
                   <InfoItem
-                    icon={faCalendar}
+                    icon={faCalendar as IconProp}
                     label={formatDateString(mov.release_date)}
                   />
                 ) : single.first_air_date ? (
                   <InfoItem
-                    icon={faCalendar}
+                    icon={faCalendar as IconProp}
                     label={formatDateString(single.first_air_date!)}
                   />
                 ) : null}
@@ -140,7 +145,7 @@ const Detail = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Detail;
+export default Detail

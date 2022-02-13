@@ -1,47 +1,48 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext, useEffect, useState } from 'react'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Tab } from '../../types';
+import { Tab } from '../../types'
 import {
   handleTermChange,
   MovieContext,
   toggleSearchActive,
-} from '../../context/Movie';
+} from '../../context/Movie'
 
-import styles from './search.module.css';
+import styles from './search.module.css'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 type SearchProps = {
-  onSearch: (term: string) => Promise<void>;
-  tab: Tab;
-};
+  onSearch: (term: string) => Promise<void>
+  tab: Tab
+}
 
 const Search = ({ onSearch, tab }: SearchProps) => {
   const {
     dispatch,
     state: { term: searchTerm },
-  } = useContext(MovieContext);
-  const [term, setTerm] = useState(searchTerm);
+  } = useContext(MovieContext)
+  const [term, setTerm] = useState(searchTerm)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (term.length > 2) {
-        onSearch(term);
+        onSearch(term)
       } else {
-        dispatch(toggleSearchActive(false));
+        dispatch(toggleSearchActive(false))
       }
-    }, 1000);
+    }, 1000)
 
     return () => {
-      clearTimeout(timeout);
-      dispatch(handleTermChange(term));
-    };
+      clearTimeout(timeout)
+      dispatch(handleTermChange(term))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tab, term]);
+  }, [tab, term])
 
   return (
     <div className={styles['search-container']}>
-      <FontAwesomeIcon icon={faSearch} />
+      <FontAwesomeIcon icon={faSearch as IconProp} />
       <input
         className={styles.input}
         placeholder="Search..."
@@ -49,7 +50,7 @@ const Search = ({ onSearch, tab }: SearchProps) => {
         onChange={(e) => setTerm(e.target.value)}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

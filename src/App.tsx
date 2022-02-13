@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import Detail from './pages/Detail';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
+import Detail from './pages/Detail'
+import Home from './pages/Home'
+import NotFound from './pages/NotFound'
 
-import MovieProvider from './context/Movie';
+import MovieProvider from './context/Movie'
 
-function App():JSX.Element {
+function App(): JSX.Element {
   return (
     <MovieProvider>
       <Router>
@@ -18,7 +18,7 @@ function App():JSX.Element {
         </Switch>
       </Router>
     </MovieProvider>
-  );
+  )
 }
 
-export default App;
+export default App

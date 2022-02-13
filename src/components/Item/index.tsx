@@ -1,19 +1,20 @@
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import { Movie, Show } from '../../types';
-import InfoItem from '../InfoItem';
+import { Movie, Show } from '../../types'
+import InfoItem from '../InfoItem'
 
-import styles from './item.module.css';
+import styles from './item.module.css'
 
-type ItemProps = { item: Movie | Show };
+type ItemProps = { item: Movie | Show }
 
 const Item = ({ item }: ItemProps) => {
-  const isMovie = Object.prototype.hasOwnProperty.call(item, 'title');
+  const isMovie = Object.prototype.hasOwnProperty.call(item, 'title')
 
   // const isMovie = !!item.hasOwnProperty('title');
-  const type = isMovie ? 'movie' : 'tv';
+  const type = isMovie ? 'movie' : 'tv'
 
   return (
     <Link className={styles.item} to={`/${type}/${item.id}`}>
@@ -32,14 +33,14 @@ const Item = ({ item }: ItemProps) => {
           {item.vote_average !== undefined && (
             <InfoItem
               color="orange"
-              icon={faStar}
+              icon={faStar as IconProp}
               label={`${item.vote_average}/10`}
             />
           )}
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default Item;
+export default Item
