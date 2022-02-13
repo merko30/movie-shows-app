@@ -1,30 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
-import { MovieContext, setActiveTab } from '../../context/Movie';
-import { Tab } from '../../types';
+import { MovieContext, setActiveTab } from 'context/Movie'
 
-import styles from './header.module.css';
+import { Tab } from 'types'
 
-const Header = () => {
+import Search from 'components/Search'
+
+import styles from './header.module.css'
+
+interface HeaderProps {
+  onSearch: (term: string) => any
+}
+
+const Header = ({ onSearch }: HeaderProps) => {
   const {
     dispatch,
     state: { activeTab },
-  } = useContext(MovieContext);
+  } = useContext(MovieContext)
 
-  const areMoviesSelected = activeTab === Tab.MOVIES;
+  const areMoviesSelected = activeTab === Tab.MOVIES
 
   return (
-    <header className={styles.container}>
-      <nav className={styles.nav}>
+    <header>
+      <Search tab={activeTab} onSearch={onSearch} />
+      <nav className="flex itemsEnd">
         <ul>
           <li
-            className={!areMoviesSelected ? styles.active : undefined}
+            className={!areMoviesSelected ? styles.active : ''}
             onClick={() => dispatch(setActiveTab(Tab.SHOWS))}
           >
             TV shows
           </li>
           <li
-            className={areMoviesSelected ? styles.active : undefined}
+            className={areMoviesSelected ? styles.active : ''}
             onClick={() => dispatch(setActiveTab(Tab.MOVIES))}
           >
             Movies
@@ -32,7 +40,7 @@ const Header = () => {
         </ul>
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -10,7 +10,7 @@ import {
 } from 'context/Movie'
 import { Tab } from 'types'
 import { fetchTopRated, search } from 'api'
-import { Grid, Search, Loading, Header, Error } from 'components'
+import { Grid, Loading, Header, Error } from 'components'
 
 const Home = () => {
   const {
@@ -66,9 +66,8 @@ const Home = () => {
   }
 
   return (
-    <div className="container" style={{ paddingBottom: '2em' }}>
-      <Header />
-      <Search tab={activeTab} onSearch={onSearch} />
+    <div style={{ paddingBottom: '2em' }}>
+      <Header onSearch={onSearch} />
       {loading && <Loading />}
       {error && <Error message={error} />}
 

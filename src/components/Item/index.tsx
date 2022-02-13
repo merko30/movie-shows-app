@@ -1,5 +1,3 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -32,8 +30,8 @@ const Item = ({ item }: ItemProps) => {
           </h1>
           {item.vote_average !== undefined && (
             <InfoItem
-              color="orange"
-              icon={faStar as IconProp}
+              // color="orange"
+              // icon={faStar as IconProp}
               label={`${item.vote_average}/10`}
             />
           )}

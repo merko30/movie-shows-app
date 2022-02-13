@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --primary: #00b4db;
+  --secondary: #0083b0;
+  --gradient: linear-gradient(350deg, var(--primary) 0%, var(--secondary) 100%);
+  --lightGray: #e3e3e3;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   /* overflow: hidden; */
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 html,
@@ -31,6 +40,14 @@ body,
   justify-content: center;
 }
 
+.justifyBetween {
+  justify-content: space-between;
+}
+
 .itemsCenter {
   align-items: center;
+}
+
+.itemsEnd {
+  align-items: flex-end;
 }

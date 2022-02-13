@@ -1,15 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import ReactPlayer from 'react-player'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-
-import {
-  faCalendar,
-  faChevronLeft,
-  faClock,
-  faStar,
-} from '@fortawesome/free-solid-svg-icons'
 
 import InfoItem from '../../components/InfoItem'
 import { fetchSingle } from '../../api'
@@ -74,11 +65,7 @@ const Detail = ({
             data-testid="back"
             onClick={() => history.push('/')}
           >
-            <FontAwesomeIcon
-              color="white"
-              icon={faChevronLeft as IconProp}
-              size="1x"
-            />
+            {/* // ICON */}
           </span>
           <div className={styles.overlay} />
           <div className={styles.content}>
@@ -113,25 +100,25 @@ const Detail = ({
               <div className="flex itemsCenter">
                 {isMovie && mov.runtime && (
                   <InfoItem
-                    icon={faClock as IconProp}
+                    // icon={faClock as IconProp}
                     label={formatMinutes(mov.runtime!)}
                   />
                 )}
                 {single.vote_average && (
                   <InfoItem
-                    color="orange"
-                    icon={faStar as IconProp}
+                    // color="orange"
+                    // icon={faStar as IconProp}
                     label={`${single.vote_average}/10`}
                   />
                 )}
                 {isMovie && mov.release_date ? (
                   <InfoItem
-                    icon={faCalendar as IconProp}
+                    // icon={faCalendar as IconProp}
                     label={formatDateString(mov.release_date)}
                   />
                 ) : single.first_air_date ? (
                   <InfoItem
-                    icon={faCalendar as IconProp}
+                    // icon={faCalendar as IconProp}
                     label={formatDateString(single.first_air_date!)}
                   />
                 ) : null}

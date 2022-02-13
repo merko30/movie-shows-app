@@ -1,23 +1,25 @@
-@import "../../index.css";
-
-.search-container {
-  width: 100%;
-  margin: 1em 0;
-  display: flex;
-  align-items: center;
-  border-radius: 0.5em;
-  box-shadow: 1px 1px 3px 0.1px rgba(0, 0, 0, 0.1);
-  border: none;
-  padding: 0.8em 1em;
-  background: var(--lighter-background);
+.container {
+  color: var(--lightGray, white);
+  margin-bottom: 2rem;
 }
 
-.search-container > input {
-  color: white;
-  flex: 2;
+.container input {
+  padding: 0 2rem;
   border: none;
   outline: none;
-  margin-left: 1em;
-  line-height: 1.6em;
   background: transparent;
+  color: white;
+  font-size: 1.125rem;
+}
+
+.container input::placeholder {
+  color: var(--lightGray, white);
+  font-weight: 300;
+  opacity: 1; /* Firefox */
+}
+
+@media only screen and (min-width: 640px) {
+  .container {
+    margin-bottom: 0;
+  }
 }

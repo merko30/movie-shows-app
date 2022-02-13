@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Tab } from '../../types'
+import { Tab } from 'types'
 import {
   handleTermChange,
   MovieContext,
   toggleSearchActive,
-} from '../../context/Movie'
+} from 'context/Movie'
+
+import SearchIcon from 'icons/Search'
 
 import styles from './search.module.css'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 type SearchProps = {
   onSearch: (term: string) => Promise<void>
@@ -41,14 +40,16 @@ const Search = ({ onSearch, tab }: SearchProps) => {
   }, [tab, term])
 
   return (
-    <div className={styles['search-container']}>
-      <FontAwesomeIcon icon={faSearch as IconProp} />
-      <input
-        className={styles.input}
-        placeholder="Search..."
-        value={term}
-        onChange={(e) => setTerm(e.target.value)}
-      />
+    <div className={styles.container}>
+      <div className="flex itemsCenter">
+        <SearchIcon />
+        <input
+          className={styles.input}
+          placeholder="Search..."
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+        />
+      </div>
     </div>
   )
 }
