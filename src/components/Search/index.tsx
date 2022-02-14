@@ -1,48 +1,41 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 
-import { Tab } from 'types'
-import {
-  handleTermChange,
-  MovieContext,
-  toggleSearchActive,
-} from 'context/Movie'
+import { Tab } from 'types';
+import { handleTermChange, MovieContext, toggleSearchActive } from 'context/Movie';
 
-import SearchIcon from 'icons/Search'
-
-import styles from './search.module.css'
+import styles from './search.module.css';
 
 type SearchProps = {
-  onSearch: (term: string) => Promise<void>
-  tab: Tab
-}
+  onSearch: (term: string) => Promise<void>;
+  tab: Tab;
+};
 
 const Search = ({ onSearch, tab }: SearchProps) => {
   const {
     dispatch,
-    state: { term: searchTerm },
-  } = useContext(MovieContext)
-  const [term, setTerm] = useState(searchTerm)
+    state: { term: searchTerm }
+  } = useContext(MovieContext);
+  const [term, setTerm] = useState(searchTerm);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (term.length > 2) {
-        onSearch(term)
+        onSearch(term);
       } else {
-        dispatch(toggleSearchActive(false))
+        dispatch(toggleSearchActive(false));
       }
-    }, 1000)
+    }, 1000);
 
     return () => {
-      clearTimeout(timeout)
-      dispatch(handleTermChange(term))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tab, term])
+      clearTimeout(timeout);
+      dispatch(handleTermChange(term));
+    };
+  }, [tab, term]);
 
   return (
     <div className={styles.container}>
       <div className="flex itemsCenter">
-        <SearchIcon />
+        <i className="fa fa-search" style={{ fontSize: '1.2rem' }} />
         <input
           className={styles.input}
           placeholder="Search..."
@@ -51,7 +44,7 @@ const Search = ({ onSearch, tab }: SearchProps) => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

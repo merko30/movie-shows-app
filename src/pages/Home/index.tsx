@@ -34,21 +34,17 @@ const Home = () => {
   const active = useMemo(() => {
     if (searchActive) {
       return searchResults
-    } else {
-      if (activeTab === Tab.MOVIES) {
-        return movies
-      }
-
-      return shows
     }
-  }, [activeTab, movies, shows, searchResults])
 
-  console.log(active)
+    if (activeTab === Tab.MOVIES) {
+      return movies
+    }
+
+    return shows
+  }, [activeTab, movies, shows, searchResults])
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('calling')
-
       if (!searchActive) {
         dispatch(start())
 

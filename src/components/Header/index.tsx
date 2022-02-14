@@ -8,8 +8,8 @@ import Search from 'components/Search'
 
 import styles from './header.module.css'
 
-interface HeaderProps {
-  onSearch: (term: string) => any
+type HeaderProps = {
+  onSearch: (term: string) => Promise<void>
 }
 
 const Header = ({ onSearch }: HeaderProps) => {

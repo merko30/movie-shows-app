@@ -65,9 +65,11 @@ const Detail = ({
             data-testid="back"
             onClick={() => history.push('/')}
           >
-            {/* // ICON */}
+            <i
+              className="fa fa-chevron-left"
+              style={{ fontSize: '1.2rem', fontWeight: 400 }}
+            />
           </span>
-          <div className={styles.overlay} />
           <div className={styles.content}>
             {single.videos.results.length &&
             single.videos.results[0].site === 'YouTube' ? (

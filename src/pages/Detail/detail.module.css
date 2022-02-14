@@ -5,7 +5,9 @@
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .background:before {
@@ -15,22 +17,24 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
+  position: absolute;
 }
 
 .back {
-  cursor: pointer;
   position: absolute;
-  top: 2em;
-  left: 2em;
-  background-color: rgba(0, 0, 0, 0.3);
-  width: 3em;
-  height: 3em;
-  border-radius: 1.5em;
+  top: 2rem;
+  left: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--text);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 3rem;
+  z-index: 10;
+  cursor: pointer;
 }
 
 .content {

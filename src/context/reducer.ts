@@ -1,11 +1,4 @@
-import {
-  Tab,
-  SearchItem,
-  Movie,
-  Show,
-  MovieDetail,
-  ShowDetail,
-} from '../types';
+import { Tab, SearchItem, Movie, Show, MovieDetail, ShowDetail } from '../types'
 
 import {
   START_ACTION,
@@ -16,19 +9,19 @@ import {
   SET_SINGLE,
   SET_ERROR,
   CHANGE_TERM,
-} from './actions';
+} from './actions'
 
 export type State = {
-  term: string;
-  activeTab: Tab;
-  searchResults: SearchItem[];
-  searchActive: boolean;
-  movie: Movie[];
-  tv: Show[];
-  single: MovieDetail | ShowDetail | null;
-  loading: boolean;
-  error: string | null;
-};
+  term: string
+  activeTab: Tab
+  searchResults: SearchItem[]
+  searchActive: boolean
+  movie: Movie[]
+  tv: Show[]
+  single: MovieDetail | ShowDetail | null
+  loading: boolean
+  error: string | null
+}
 
 export const initialState: State = {
   term: '',
@@ -40,7 +33,7 @@ export const initialState: State = {
   tv: [],
   loading: false,
   error: null,
-};
+}
 
 const reducer = (
   state = initialState,
@@ -52,50 +45,50 @@ const reducer = (
         ...state,
         loading: true,
         error: null,
-      };
+      }
     case SET_ACTIVE_TAB:
       return {
         ...state,
         activeTab: action.payload,
-      };
+      }
     case SET_ITEMS:
       return {
         ...state,
         [state.activeTab]: action.payload,
         loading: false,
         error: null,
-      };
+      }
     case SET_SEARCH_RESULTS:
       return {
         ...state,
         searchResults: action.payload,
         loading: false,
-      };
+      }
     case TOGGLE_SEARCH_ACTIVE:
       return {
         ...state,
         searchActive: action.payload,
-      };
+      }
     case SET_SINGLE:
       return {
         ...state,
         loading: false,
         single: action.payload,
-      };
+      }
     case CHANGE_TERM:
       return {
         ...state,
         term: action.payload,
-      };
+      }
     case SET_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reducer;
+export default reducer
