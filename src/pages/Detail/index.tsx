@@ -1,51 +1,53 @@
-import React, { useContext, useEffect } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import ReactPlayer from 'react-player'
+import React, { useContext, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
-import InfoItem from '../../components/InfoItem'
-import { fetchSingle } from '../../api'
-import { MovieContext, setSingle, start, setError } from '../../context/Movie'
-import { Loading } from '../../components'
-import { MovieDetail } from '../../types'
-import { formatMinutes, formatDateString } from '../../utils'
+import InfoItem from '../../components/InfoItem';
+import { fetchSingle } from '../../api';
+import { MovieContext, setSingle, start, setError } from '../../context/Movie';
+import { Loading } from '../../components';
+import { MovieDetail } from '../../types';
+import { formatMinutes, formatDateString } from '../../utils';
 
-import styles from './detail.module.css'
+import styles from './detail.module.css';
 
 export type Params = {
-  id: string
-  type: string
-}
+  id: string;
+  type: string;
+};
 
-const YOUTUBE_URL = `https://www.youtube.com/watch?v=`
+const YOUTUBE_URL = `https://www.youtube.com/watch?v=`;
 
-type DetailProps = RouteComponentProps<Params>
+type DetailProps = RouteComponentProps<Params>;
 
 const Detail = ({
   history,
   match: {
-    params: { type, id },
-  },
+    params: { type, id }
+  }
 }: DetailProps): JSX.Element => {
   const {
     state: { single, loading, error },
-    dispatch,
-  } = useContext(MovieContext)
+    dispatch
+  } = useContext(MovieContext);
 
   useEffect(() => {
-    ;(async () => {
-      dispatch(start())
+    const fetchDetails = async () => {
+      dispatch(start());
 
       try {
-        const data = await (await fetchSingle(type, id)).json()
-        dispatch(setSingle(data))
-      } catch (error) {
-        dispatch(setError(error as string))
+        const data = await (await fetchSingle(type, id)).json();
+        dispatch(setSingle(data));
+      } catch (err) {
+        dispatch(setError(err as string));
       }
-    })()
-  }, [id, type])
+    };
 
-  const isMovie = type === 'movie'
-  const mov = single as MovieDetail
+    fetchDetails();
+  }, [id, type, dispatch]);
+
+  const isMovie = type === 'movie';
+  const mov = single as MovieDetail;
 
   return (
     <div style={{ height: '100%', overflowX: 'hidden' }}>
@@ -57,26 +59,18 @@ const Detail = ({
           style={{
             backgroundImage: single.backdrop_path
               ? `url('https://image.tmdb.org/t/p/original${single.backdrop_path}')`
-              : `url('/camera.jpg')`,
+              : `url('/camera.jpg')`
           }}
         >
-          <span
-            className={styles.back}
-            data-testid="back"
-            onClick={() => history.push('/')}
-          >
-            <i
-              className="fa fa-chevron-left"
-              style={{ fontSize: '1.2rem', fontWeight: 400 }}
-            />
+          <span className={styles.back} data-testid="back" onClick={() => history.push('/')}>
+            <i className="fa fa-chevron-left" style={{ fontSize: '1.2rem', fontWeight: 400 }} />
           </span>
           <div className={styles.content}>
-            {single.videos.results.length &&
-            single.videos.results[0].site === 'YouTube' ? (
+            {single.videos.results.length && single.videos.results[0].site === 'YouTube' ? (
               <div className={styles.video}>
                 <ReactPlayer
                   data-testid="video"
-                  url={`${YOUTUBE_URL}${single.videos!.results[0].key}`}
+                  url={`${YOUTUBE_URL}${single.videos.results[0].key}`}
                   width="100%"
                 />
               </div>
@@ -95,46 +89,45 @@ const Detail = ({
                       <span key={g.id} className={styles['genre-container']}>
                         <p className={styles.genre}>{g.name}</p>
                       </span>
-                    )
+                    );
                   })}
               </div>
               <h1>{isMovie ? mov.title : single.name}</h1>
               <div className="flex itemsCenter">
                 {isMovie && mov.runtime && (
                   <InfoItem
-                    // icon={faClock as IconProp}
-                    label={formatMinutes(mov.runtime!)}
+                    icon={<i className="fa fa-clock" />}
+                    label={formatMinutes(mov.runtime)}
                   />
                 )}
                 {single.vote_average && (
                   <InfoItem
-                    // color="orange"
-                    // icon={faStar as IconProp}
+                    icon={<i className="fa fa-star" />}
                     label={`${single.vote_average}/10`}
                   />
                 )}
                 {isMovie && mov.release_date ? (
                   <InfoItem
-                    // icon={faCalendar as IconProp}
+                    icon={<i className="fa fa-calendar" />}
                     label={formatDateString(mov.release_date)}
                   />
-                ) : single.first_air_date ? (
-                  <InfoItem
-                    // icon={faCalendar as IconProp}
-                    label={formatDateString(single.first_air_date!)}
-                  />
-                ) : null}
+                ) : (
+                  single.first_air_date && (
+                    <InfoItem
+                      icon={<i className="fa fa-clock" />}
+                      label={formatDateString(single.first_air_date)}
+                    />
+                  )
+                )}
               </div>
 
-              {single.overview && (
-                <p className={styles.overview}>{single.overview}</p>
-              )}
+              {single.overview && <p className={styles.overview}>{single.overview}</p>}
             </div>
           </div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Detail
+export default Detail;

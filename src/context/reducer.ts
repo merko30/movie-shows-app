@@ -1,4 +1,4 @@
-import { Tab, SearchItem, Movie, Show, MovieDetail, ShowDetail } from '../types'
+import { Tab, SearchItem, Movie, Show, MovieDetail, ShowDetail } from '../types';
 
 import {
   START_ACTION,
@@ -8,20 +8,20 @@ import {
   TOGGLE_SEARCH_ACTIVE,
   SET_SINGLE,
   SET_ERROR,
-  CHANGE_TERM,
-} from './actions'
+  CHANGE_TERM
+} from './actions';
 
 export type State = {
-  term: string
-  activeTab: Tab
-  searchResults: SearchItem[]
-  searchActive: boolean
-  movie: Movie[]
-  tv: Show[]
-  single: MovieDetail | ShowDetail | null
-  loading: boolean
-  error: string | null
-}
+  term: string;
+  activeTab: Tab;
+  searchResults: SearchItem[];
+  searchActive: boolean;
+  movie: Movie[];
+  tv: Show[];
+  single: MovieDetail | ShowDetail | null;
+  loading: boolean;
+  error: string | null;
+};
 
 export const initialState: State = {
   term: '',
@@ -32,63 +32,61 @@ export const initialState: State = {
   movie: [],
   tv: [],
   loading: false,
-  error: null,
-}
+  error: null
+};
 
-const reducer = (
-  state = initialState,
-  action: { type: string; payload?: any }
-) => {
+// eslint-disable-next-line @typescript-eslint/default-param-last
+const reducer = (state = initialState, action: { type: string; payload?: any }) => {
   switch (action.type) {
     case START_ACTION:
       return {
         ...state,
         loading: true,
-        error: null,
-      }
+        error: null
+      };
     case SET_ACTIVE_TAB:
       return {
         ...state,
-        activeTab: action.payload,
-      }
+        activeTab: action.payload
+      };
     case SET_ITEMS:
       return {
         ...state,
         [state.activeTab]: action.payload,
         loading: false,
-        error: null,
-      }
+        error: null
+      };
     case SET_SEARCH_RESULTS:
       return {
         ...state,
         searchResults: action.payload,
-        loading: false,
-      }
+        loading: false
+      };
     case TOGGLE_SEARCH_ACTIVE:
       return {
         ...state,
-        searchActive: action.payload,
-      }
+        searchActive: action.payload
+      };
     case SET_SINGLE:
       return {
         ...state,
         loading: false,
-        single: action.payload,
-      }
+        single: action.payload
+      };
     case CHANGE_TERM:
       return {
         ...state,
-        term: action.payload,
-      }
+        term: action.payload
+      };
     case SET_ERROR:
       return {
         ...state,
         loading: false,
-        error: action.payload,
-      }
+        error: action.payload
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

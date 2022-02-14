@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-  --text: #fff;
-  --bg: #0083b0;
+  --text: #333;
+  --bg: white;
   --lightGray: #e3e3e3;
-  --divider: #3e95b5;
+  --divider: #ededed;
   --yellow: #bfa75e;
 }
 

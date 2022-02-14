@@ -1,27 +1,22 @@
-import React from 'react'
+import React from 'react';
 
-import styles from './info-item.module.css'
+import styles from './info-item.module.css';
 
 type InfoItemProps = {
-  // icon: FontAwesomeIconProps['icon']
-  label: string | number
+  icon: React.ReactNode;
+  label: string | number;
   // size?: FontAwesomeIconProps['size']
   // color?: FontAwesomeIconProps['color']
-  labelColor?: string
-}
+  labelColor?: string;
+};
 
-const InfoItem = ({
-  // icon,
-  label,
-  // color = 'white',
-  labelColor = 'white',
-}: // size = '1x',
-InfoItemProps) => {
+const InfoItem = ({ icon, label, labelColor = 'white' }: InfoItemProps) => {
   return (
     <span className={`${styles.container} flex itemsCenter`}>
+      {icon}
       <p style={{ color: labelColor, marginLeft: '.5em' }}>{label}</p>
     </span>
-  )
-}
+  );
+};
 
-export default InfoItem
+export default InfoItem;

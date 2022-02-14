@@ -72,5 +72,5 @@ export type MovieDetail = {
 
 export enum Tab {
   MOVIES = 'movie',
-  SHOWS = 'tv',
+  SHOWS = 'tv'
 }

@@ -20,13 +20,8 @@
 .title {
   font-size: 1rem;
   font-weight: 500;
-  color: white;
+  color: var(--text);
   text-transform: none;
-}
-
-.genre {
-  font-size: 0.875rem;
-  color: white;
 }
 
 .rating {

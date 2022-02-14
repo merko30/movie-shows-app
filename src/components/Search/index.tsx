@@ -30,7 +30,7 @@ const Search = ({ onSearch, tab }: SearchProps) => {
       clearTimeout(timeout);
       dispatch(handleTermChange(term));
     };
-  }, [tab, term]);
+  }, [dispatch, onSearch, tab, term]);
 
   return (
     <div className={styles.container}>

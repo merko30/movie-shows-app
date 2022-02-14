@@ -10,40 +10,40 @@ export const SET_SINGLE = 'SET_SINGLE';
 export const CHANGE_TERM = 'CHANGE_TERM';
 
 export const start = () => ({
-  type: START_ACTION,
+  type: START_ACTION
 });
 
 export const setActiveTab = (tab: Tab) => ({
   type: SET_ACTIVE_TAB,
-  payload: tab,
+  payload: tab
 });
 
 export const handleTermChange = (term: string) => ({
   type: CHANGE_TERM,
-  payload: term,
+  payload: term
 });
 
 export const setItems = (items: Movie[] | Show[]) => ({
   type: SET_ITEMS,
-  payload: items,
+  payload: items
 });
 
 export const setSearchResults = (items: (Movie | Show)[]) => ({
   type: SET_SEARCH_RESULTS,
-  payload: items,
+  payload: items
 });
 
 export const toggleSearchActive = (value: boolean) => ({
   type: TOGGLE_SEARCH_ACTIVE,
-  payload: value,
+  payload: value
 });
 
 export const setError = (error: string) => ({
   type: SET_ERROR,
-  payload: error,
+  payload: error
 });
 
 export const setSingle = (single: Show | Movie) => ({
   type: SET_SINGLE,
-  payload: single,
+  payload: single
 });

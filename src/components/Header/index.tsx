@@ -1,24 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 
-import { MovieContext, setActiveTab } from 'context/Movie'
+import { MovieContext, setActiveTab } from 'context/Movie';
 
-import { Tab } from 'types'
+import { Tab } from 'types';
 
-import Search from 'components/Search'
+import Search from 'components/Search';
 
-import styles from './header.module.css'
+import styles from './header.module.css';
 
 type HeaderProps = {
-  onSearch: (term: string) => Promise<void>
-}
+  onSearch: (term: string) => Promise<void>;
+};
 
 const Header = ({ onSearch }: HeaderProps) => {
   const {
     dispatch,
-    state: { activeTab },
-  } = useContext(MovieContext)
+    state: { activeTab }
+  } = useContext(MovieContext);
 
-  const areMoviesSelected = activeTab === Tab.MOVIES
+  const areMoviesSelected = activeTab === Tab.MOVIES;
 
   return (
     <header>
@@ -42,7 +42,7 @@ const Header = ({ onSearch }: HeaderProps) => {
         </nav>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
