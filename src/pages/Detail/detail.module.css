@@ -8,6 +8,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   min-height: 100vh;
+  z-index: 0;
 }
 
 .background:before {
@@ -27,7 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--bg);
   color: var(--text);
   width: 3rem;
   height: 3rem;
@@ -53,15 +54,17 @@
 
 .info {
   margin-top: 2em;
+  color: var(--bg);
 }
 
 .image {
-  max-width: 400px;
-  height: 100%;
+  min-height: 400px;
+}
+
+.image img {
   width: 100%;
-  object-fit: contain;
-  /* height: 300px; */
-  aspect-ratio: 16 / 9;
+  height: 100%;
+  object-fit: cover;
 }
 
 h1 {
@@ -80,15 +83,6 @@ h1 {
   color: #e3e3e3;
   font-weight: 400;
   margin: 1em 0;
-}
-
-.date {
-  color: white;
-}
-
-.runtime {
-  color: white;
-  margin: 0.5em 1em 0.5em 0;
 }
 
 .genre-container {
