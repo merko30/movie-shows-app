@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 
-import reducer, { State, initialState } from './reducer';
+import reducer, { State, initialState, Payload } from './reducer';
 
 export * from './actions';
 
@@ -13,7 +13,9 @@ export type MovieContextI = {
 export const MovieContext = createContext({} as MovieContextI);
 
 const MovieProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer<
+    (state: State, action: { type: string; payload?: Payload }) => any
+  >(reducer, initialState);
 
   return <MovieContext.Provider value={{ state, dispatch }}>{children}</MovieContext.Provider>;
 };

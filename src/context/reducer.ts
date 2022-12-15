@@ -35,8 +35,10 @@ export const initialState: State = {
   error: null
 };
 
+export type Payload = Movie | Show | Tab | MovieDetail | ShowDetail;
+
 // eslint-disable-next-line @typescript-eslint/default-param-last
-const reducer = (state = initialState, action: { type: string; payload?: any }) => {
+const reducer = (state: State, action: { type: string; payload?: Payload }) => {
   switch (action.type) {
     case START_ACTION:
       return {
