@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { TMDB_IMAGE_W500_URL } from 'api';
@@ -31,4 +31,4 @@ const Item = ({ item }: ItemProps) => {
   );
 };
 
-export default Item;
+export default memo(Item);
