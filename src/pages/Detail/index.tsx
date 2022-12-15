@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import { fetchSingle } from 'api';
+import { fetchSingle, TMDB_IMAGE_ORIGINAL_URL } from 'api';
 
 import { MovieContext, setSingle, start, setError } from 'context/Movie';
 
@@ -35,8 +35,8 @@ const Detail = ({
       dispatch(start());
 
       try {
-        const data = await (await fetchSingle(type, id)).json();
-        dispatch(setSingle(data));
+        const response = await fetchSingle(type, id);
+        dispatch(setSingle(response.data));
       } catch (err) {
         dispatch(setError(err as string));
       }
@@ -54,7 +54,7 @@ const Detail = ({
           className={styles.background}
           style={{
             backgroundImage: details.backdrop_path
-              ? `url('https://image.tmdb.org/t/p/original${details.backdrop_path}')`
+              ? `url('${TMDB_IMAGE_ORIGINAL_URL}${details.backdrop_path}')`
               : `url('/camera.jpg')`
           }}
         >

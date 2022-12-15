@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
+import { TMDB_IMAGE_W500_URL } from 'api';
+
 import { Movie, Show, SearchItem } from 'types';
 
 import styles from './item.module.css';
@@ -18,7 +20,7 @@ const Item = ({ item }: ItemProps) => {
         className={styles.wrapper}
         style={{
           backgroundImage: item.backdrop_path
-            ? `url('https://image.tmdb.org/t/p/w500${item.backdrop_path}')`
+            ? `url('${TMDB_IMAGE_W500_URL}${item.backdrop_path}')`
             : `url(/camera.jpg)`
         }}
       >

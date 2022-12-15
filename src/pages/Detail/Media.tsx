@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
+import { TMDB_IMAGE_ORIGINAL_URL } from 'api';
+
 import { MovieDetail, ShowDetail } from 'types';
 
 import styles from './detail.module.css';
@@ -25,7 +27,7 @@ const Media = ({ details }: MediaProps) => {
 
   return (
     <div className={styles.image}>
-      <img alt="poster" src={`https://image.tmdb.org/t/p/original${details.poster_path}`} />
+      <img alt="poster" src={`${TMDB_IMAGE_ORIGINAL_URL}${details.poster_path}`} />
     </div>
   );
 };

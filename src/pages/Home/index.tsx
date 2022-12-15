@@ -41,10 +41,10 @@ const Home = () => {
         dispatch(start());
 
         try {
-          const response = await (await fetchTopRated(activeTab)).json();
+          const response = await fetchTopRated(activeTab);
 
-          if (response.results) {
-            dispatch(setItems(response.results));
+          if (response.data) {
+            dispatch(setItems(response.data.results));
           } else {
             // messages are not relevant for the users
             dispatch(setError('Something went wrong'));
@@ -63,11 +63,11 @@ const Home = () => {
       dispatch(start());
 
       try {
-        const response = await (await search(term)).json();
+        const response = await search(term);
         dispatch(toggleSearchActive(true));
 
-        if (response.results) {
-          dispatch(setSearchResults(response.results));
+        if (response.data?.results) {
+          dispatch(setSearchResults(response.data.results));
         } else {
           dispatch(setError('Something went wrong'));
         }

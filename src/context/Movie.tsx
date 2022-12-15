@@ -14,6 +14,7 @@ export const MovieContext = createContext({} as MovieContextI);
 
 const MovieProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer<
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: State, action: { type: string; payload?: Payload }) => any
   >(reducer, initialState);
 
