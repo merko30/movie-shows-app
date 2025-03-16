@@ -6,8 +6,6 @@ import { MovieContext, setSingle, start, setError } from 'context/Movie';
 
 import { Loading } from 'components';
 
-import styles from './detail.module.css';
-
 import Info from './Info';
 import Media from './Media';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -42,11 +40,11 @@ const Detail = () => {
   }, [id, type, dispatch]);
 
   return (
-    <div style={{ height: '100%', overflowX: 'hidden' }}>
+    <div className="relative">
       {error && <p>{error}</p>}
       {details && (
         <div
-          className={styles.background}
+          className="bg-center bg-cover bg-no-repeat w-screen h-screen flex items-center justify-center after:bg-black/60 after:absolute after:inset-0"
           style={{
             backgroundImage: details.backdrop_path
               ? `url('${TMDB_IMAGE_ORIGINAL_URL}${details.backdrop_path}')`
@@ -55,13 +53,17 @@ const Detail = () => {
         >
           {!loading ? (
             <>
-              <span className={styles.back} data-testid="back" onClick={() => navigate('/')}>
+              <span
+                className="flex items-center justify-center bg-white/80 rounded-full p-4 size-12 absolute top-10 left-20 z-10"
+                data-testid="back"
+                onClick={() => navigate('/')}
+              >
                 <i
                   className="fa fa-chevron-left"
                   style={{ fontSize: '1.2rem', color: 'inherit' }}
                 />
               </span>
-              <div className={styles.content}>
+              <div className="flex gap-4 mx-24 p-4 bg-white/20 rounded-lg z-10">
                 <Media details={details} />
                 <Info details={details} type={type!} />
               </div>

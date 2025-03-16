@@ -21,10 +21,10 @@ const Header = ({ onSearch }: HeaderProps) => {
   const areMoviesSelected = activeTab === Tab.MOVIES;
 
   return (
-    <header>
-      <div className="container">
+    <header className="container w-full">
+      <div className="flex justify-between">
         <Search tab={activeTab} onSearch={onSearch} />
-        <nav className="flex itemsEnd">
+        <nav className="flex items-center">
           <ul>
             <li
               className={!areMoviesSelected ? styles.active : ''}

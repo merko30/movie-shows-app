@@ -9,7 +9,7 @@ import MovieProvider from './context/Movie';
 
 function App() {
   return (
-    <div className="wrapper">
+    <>
       <MovieProvider>
         <BrowserRouter>
           <Routes>
@@ -19,7 +19,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </MovieProvider>
-    </div>
+    </>
   );
 }
 

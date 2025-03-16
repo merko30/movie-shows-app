@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.0.14",
     "@testing-library/react": "^16.2.0",
     "@types/react-router-dom": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
@@ -56,6 +57,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
+    "tailwindcss": "^4.0.14",
     "typescript": "^5.8.2"
   },
   "husky": {

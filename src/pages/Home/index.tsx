@@ -15,8 +15,6 @@ import { fetchTopRated, search } from 'api';
 
 import { Loading, Header, Error, Item } from 'components';
 
-import styles from './home.module.css';
-
 const Home = () => {
   const {
     state: { searchResults, searchActive, activeTab, movie: movies, tv: shows, loading, error },
@@ -84,17 +82,15 @@ const Home = () => {
     [dispatch]
   );
 
-  console.log(active);
-
   return (
-    <div>
+    <div className="container">
       <Header onSearch={onSearch} />
-      <div className="content">
-        <div className="container">
+      <div>
+        <div>
           {loading && <Loading />}
           {error && <Error message={error} />}
 
-          <div className={styles.grid}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
             {((active as Array<Show | Movie | SearchItem>) || []).map((item) => {
               return <Item key={item.id} item={item} />;
             })}
