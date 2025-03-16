@@ -4,17 +4,23 @@ import axios from 'lib/axios';
 import { Tab } from '../types';
 
 export const fetchTopRated = async (type: Tab): Promise<AxiosResponse> => {
-  return axios.get(`${type}/top_rated?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+  return axios.get(`${type}/top_rated`);
 };
 
 export const search = async (term: string): Promise<AxiosResponse> => {
-  return axios.get(`search/multi?query=${term}&api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+  return axios.get(`search/multi`, {
+    params: {
+      query: term
+    }
+  });
 };
 
 export const fetchSingle = async (type: string, id: string): Promise<AxiosResponse> => {
-  return axios.get(
-    `${type}/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&append_to_response=videos`
-  );
+  return axios.get(`${type}/${id}`, {
+    params: {
+      append_to_response: 'videos'
+    }
+  });
 };
 
 export const TMDB_IMAGE_ORIGINAL_URL = 'https://image.tmdb.org/t/p/original';
