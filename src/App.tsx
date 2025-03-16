@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router';
 
 import Detail from './pages/Detail';
 import Home from './pages/Home';
@@ -7,17 +7,17 @@ import NotFound from './pages/NotFound';
 
 import MovieProvider from './context/Movie';
 
-function App(): JSX.Element {
+function App() {
   return (
     <div className="wrapper">
       <MovieProvider>
-        <Router>
-          <Switch>
-            <Route component={Home} path="/" exact />
-            <Route component={Detail} path="/:type/:id" />
-            <Route component={NotFound} path="*" />
-          </Switch>
-        </Router>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Home />} path="/" index />
+            <Route element={<Detail />} path="/:type/:id" />
+            <Route element={<NotFound />} path="*" />
+          </Routes>
+        </BrowserRouter>
       </MovieProvider>
     </div>
   );

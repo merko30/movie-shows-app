@@ -44,12 +44,16 @@ const Home = () => {
           const response = await fetchTopRated(activeTab);
 
           if (response.data) {
+            console.log(response.data.results);
+
             dispatch(setItems(response.data.results));
           } else {
             // messages are not relevant for the users
             dispatch(setError('Something went wrong'));
           }
         } catch (err) {
+          console.log(err);
+
           dispatch(setError('Something went wrong'));
         }
       }
@@ -72,6 +76,8 @@ const Home = () => {
           dispatch(setError('Something went wrong'));
         }
       } catch (err) {
+        console.log(err);
+
         dispatch(setError('Something went wrong'));
       }
     },

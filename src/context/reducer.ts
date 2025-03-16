@@ -35,7 +35,7 @@ export const initialState: State = {
   error: null
 };
 
-export type Payload = Movie | Show | Tab | MovieDetail | ShowDetail;
+export type Payload = any;
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
 const reducer = (state: State, action: { type: string; payload?: Payload }) => {
@@ -49,7 +49,7 @@ const reducer = (state: State, action: { type: string; payload?: Payload }) => {
     case SET_ACTIVE_TAB:
       return {
         ...state,
-        activeTab: action.payload
+        activeTab: action.payload as Tab
       };
     case SET_ITEMS:
       return {
