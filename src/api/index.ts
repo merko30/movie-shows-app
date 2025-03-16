@@ -4,16 +4,16 @@ import axios from 'lib/axios';
 import { Tab } from '../types';
 
 export const fetchTopRated = async (type: Tab): Promise<AxiosResponse> => {
-  return axios.get(`${type}/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
+  return axios.get(`${type}/top_rated?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
 };
 
 export const search = async (term: string): Promise<AxiosResponse> => {
-  return axios.get(`search/multi?query=${term}&api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
+  return axios.get(`search/multi?query=${term}&api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
 };
 
 export const fetchSingle = async (type: string, id: string): Promise<AxiosResponse> => {
   return axios.get(
-    `${type}/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&append_to_response=videos`
+    `${type}/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&append_to_response=videos`
   );
 };
 

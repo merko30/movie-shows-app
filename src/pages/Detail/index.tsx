@@ -43,7 +43,6 @@ const Detail = () => {
 
   return (
     <div style={{ height: '100%', overflowX: 'hidden' }}>
-      {loading && <Loading />}
       {error && <p>{error}</p>}
       {details && (
         <div
@@ -54,13 +53,22 @@ const Detail = () => {
               : `url('/camera.jpg')`
           }}
         >
-          <span className={styles.back} data-testid="back" onClick={() => navigate('/')}>
-            <i className="fa fa-chevron-left" style={{ fontSize: '1.2rem', color: 'inherit' }} />
-          </span>
-          <div className={styles.content}>
-            <Media details={details} />
-            <Info details={details} type={type!} />
-          </div>
+          {!loading ? (
+            <>
+              <span className={styles.back} data-testid="back" onClick={() => navigate('/')}>
+                <i
+                  className="fa fa-chevron-left"
+                  style={{ fontSize: '1.2rem', color: 'inherit' }}
+                />
+              </span>
+              <div className={styles.content}>
+                <Media details={details} />
+                <Info details={details} type={type!} />
+              </div>
+            </>
+          ) : (
+            <Loading />
+          )}
         </div>
       )}
     </div>

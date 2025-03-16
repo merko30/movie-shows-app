@@ -84,6 +84,8 @@ const Home = () => {
     [dispatch]
   );
 
+  console.log(active);
+
   return (
     <div>
       <Header onSearch={onSearch} />
@@ -93,7 +95,7 @@ const Home = () => {
           {error && <Error message={error} />}
 
           <div className={styles.grid}>
-            {(active as Array<Show | Movie | SearchItem>).map((item) => {
+            {((active as Array<Show | Movie | SearchItem>) || []).map((item) => {
               return <Item key={item.id} item={item} />;
             })}
           </div>

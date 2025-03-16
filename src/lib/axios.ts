@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_TMDB_URL,
+  baseURL: import.meta.env.VITE_TMDB_URL,
   timeout: 2000
 });
 
