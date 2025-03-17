@@ -6,8 +6,6 @@ import { Tab } from 'types';
 
 import Search from 'components/Search';
 
-import styles from './header.module.css';
-
 type HeaderProps = {
   onSearch: (term: string) => Promise<void>;
 };
@@ -21,19 +19,19 @@ const Header = ({ onSearch }: HeaderProps) => {
   const areMoviesSelected = activeTab === Tab.MOVIES;
 
   return (
-    <header className="container w-full">
+    <header className="container w-full p-8">
       <div className="flex justify-between">
         <Search tab={activeTab} onSearch={onSearch} />
-        <nav className="flex items-center">
-          <ul>
+        <nav>
+          <ul className="flex gap-4">
             <li
-              className={!areMoviesSelected ? styles.active : ''}
+              className={`text-lg uppercase cursor-pointer ${!areMoviesSelected ? 'font-medium' : ''}`}
               onClick={() => dispatch(setActiveTab(Tab.SHOWS))}
             >
               TV shows
             </li>
             <li
-              className={areMoviesSelected ? styles.active : ''}
+              className={`text-lg uppercase cursor-pointer ${areMoviesSelected ? 'font-medium' : ''}`}
               onClick={() => dispatch(setActiveTab(Tab.MOVIES))}
             >
               Movies
