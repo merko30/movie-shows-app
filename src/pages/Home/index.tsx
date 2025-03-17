@@ -83,14 +83,14 @@ const Home = () => {
   );
 
   return (
-    <div className="container">
+    <div className="container p-4">
       <Header onSearch={onSearch} />
       <div>
         <div>
           {loading && <Loading />}
           {error && <Error message={error} />}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {((active as Array<Show | Movie | SearchItem>) || []).map((item) => {
               return <Item key={item.id} item={item} />;
             })}
