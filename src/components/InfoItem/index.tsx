@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styles from './info-item.module.css';
-
 type InfoItemProps = {
   iconClass: string;
   label: string | number;
@@ -12,9 +10,11 @@ type InfoItemProps = {
 
 const InfoItem = ({ iconClass, label, labelColor = 'white' }: InfoItemProps) => {
   return (
-    <span className={`${styles.container} flex itemsCenter`}>
+    <span className="flex items-center text-white">
       <i className={iconClass} style={{ color: 'inherit' }} />
-      <p style={{ color: labelColor, marginLeft: '.5em' }}>{label}</p>
+      <p style={{ color: labelColor }} className="ml-2">
+        {label}
+      </p>
     </span>
   );
 };

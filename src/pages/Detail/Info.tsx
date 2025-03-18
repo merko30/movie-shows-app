@@ -6,8 +6,6 @@ import { MovieDetail, ShowDetail } from 'types';
 
 import { formatDateString, formatMinutes } from 'utils';
 
-import styles from './detail.module.css';
-
 type InfoProps = {
   details: MovieDetail | ShowDetail;
   type: string;
@@ -18,19 +16,19 @@ const Info = ({ details, type }: InfoProps) => {
   const movie = details as MovieDetail;
 
   return (
-    <div className={styles.info}>
-      <div>
+    <div className="">
+      <div className="flex gap-2">
         {details.genres &&
           details.genres.map((g) => {
             return (
-              <span key={g.id} className={styles['genre-container']}>
-                <p className={styles.genre}>{g.name}</p>
+              <span key={g.id}>
+                <p className="text-white text-sm uppercase">{g.name}</p>
               </span>
             );
           })}
       </div>
       <h1>{isMovie ? movie.title : details.name}</h1>
-      <div className="flex itemsCenter">
+      <div className="flex items-center gap-2 mb-2">
         {isMovie && movie.runtime && (
           <InfoItem iconClass="fa fa-clock" label={formatMinutes(movie.runtime)} />
         )}
@@ -46,7 +44,7 @@ const Info = ({ details, type }: InfoProps) => {
         )}
       </div>
 
-      {details.overview && <p className={styles.overview}>{details.overview}</p>}
+      {details.overview && <p className="text-white">{details.overview}</p>}
     </div>
   );
 };

@@ -3,8 +3,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Tab } from 'types';
 import { handleTermChange, MovieContext, toggleSearchActive } from 'context/Movie';
 
-import styles from './search.module.css';
-
 type SearchProps = {
   onSearch: (term: string) => Promise<void>;
   tab: Tab;
@@ -33,17 +31,17 @@ const Search = ({ onSearch, tab }: SearchProps) => {
   }, [dispatch, onSearch, tab, term]);
 
   return (
-    <div className={styles.container}>
-      <div className="flex itemsCenter">
+    <>
+      <div className="flex items-center">
         <i className="fa fa-search" style={{ fontSize: '1.2rem' }} />
         <input
-          className={styles.input}
+          className="border-none outline-none text-lg ml-4"
           placeholder="Search..."
           value={term}
           onChange={(e) => setTerm(e.target.value)}
         />
       </div>
-    </div>
+    </>
   );
 };
 

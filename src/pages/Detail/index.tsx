@@ -44,7 +44,7 @@ const Detail = () => {
       {error && <p>{error}</p>}
       {details && (
         <div
-          className="bg-center bg-cover bg-no-repeat w-screen h-screen flex items-center justify-center after:bg-black/60 after:absolute after:inset-0"
+          className="bg-center bg-cover bg-no-repeat w-screen h-auto md:h-screen flex items-center justify-center after:bg-black/60 after:absolute after:inset-0"
           style={{
             backgroundImage: details.backdrop_path
               ? `url('${TMDB_IMAGE_ORIGINAL_URL}${details.backdrop_path}')`
@@ -54,7 +54,7 @@ const Detail = () => {
           {!loading ? (
             <>
               <span
-                className="flex items-center justify-center bg-white/80 rounded-full p-4 size-12 absolute top-10 left-20 z-10"
+                className="flex items-center justify-center bg-white/80 rounded-full p-4 size-12 absolute top-10 left-5 md:left-20 z-10"
                 data-testid="back"
                 onClick={() => navigate('/')}
               >
@@ -63,7 +63,7 @@ const Detail = () => {
                   style={{ fontSize: '1.2rem', color: 'inherit' }}
                 />
               </span>
-              <div className="flex gap-4 mx-24 p-4 bg-white/20 rounded-lg z-10">
+              <div className="flex flex-col md:flex-row gap-4 mx-2 md:mx-24 mt-32 md:mt-0 mb-10 md:mb-0 pt-12 md:pt-4 p-4 bg-white/20 rounded-lg z-10">
                 <Media details={details} />
                 <Info details={details} type={type!} />
               </div>
