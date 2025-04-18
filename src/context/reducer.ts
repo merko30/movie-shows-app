@@ -16,6 +16,10 @@ export type State = {
   activeTab: Tab;
   searchResults: SearchItem[];
   searchActive: boolean;
+  meta: {
+    page: number;
+    total_pages: number;
+  };
   movie: Movie[];
   tv: Show[];
   single: MovieDetail | ShowDetail | null;
@@ -30,6 +34,10 @@ export const initialState: State = {
   single: null,
   searchResults: [],
   movie: [],
+  meta: {
+    page: 1,
+    total_pages: 1
+  },
   tv: [],
   loading: false,
   error: null
@@ -51,19 +59,29 @@ const reducer = (state: State, action: { type: string; payload?: Payload }) => {
         ...state,
         activeTab: action.payload as Tab
       };
-    case SET_ITEMS:
+    case SET_ITEMS: {
+      const { results: _results, reset = false, ...meta } = action.payload;
+      // extend or replace the current state with the new results
+      const results = reset ? _results : [...state[state.activeTab], ..._results];
       return {
         ...state,
-        [state.activeTab]: action.payload,
+        [state.activeTab]: results,
+        meta,
         loading: false,
         error: null
       };
-    case SET_SEARCH_RESULTS:
+    }
+    case SET_SEARCH_RESULTS: {
+      const { results: _results, reset = false, ...meta } = action.payload;
+      // extend or replace the current state with the new results
+      const results = reset ? _results : [...state[state.activeTab], ..._results];
       return {
         ...state,
-        searchResults: action.payload,
+        searchResults: results,
+        meta,
         loading: false
       };
+    }
     case TOGGLE_SEARCH_ACTIVE:
       return {
         ...state,

@@ -3,8 +3,12 @@ import axios from 'lib/axios';
 
 import { Tab } from '../types';
 
-export const fetchTopRated = async (type: Tab): Promise<AxiosResponse> => {
-  return axios.get(`${type}/top_rated`);
+export const fetchTopRated = async (type: Tab, page?: number): Promise<AxiosResponse> => {
+  return axios.get(`${type}/top_rated`, {
+    params: {
+      page: page || 1
+    }
+  });
 };
 
 export const search = async (term: string): Promise<AxiosResponse> => {

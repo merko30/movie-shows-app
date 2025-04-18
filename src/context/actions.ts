@@ -23,9 +23,13 @@ export const handleTermChange = (term: string) => ({
   payload: term
 });
 
-export const setItems = (items: Movie[] | Show[]) => ({
+export const setItems = (payload: {
+  results: (Movie | Show)[];
+  page: number;
+  total_pages: number;
+}) => ({
   type: SET_ITEMS,
-  payload: items
+  payload
 });
 
 export const setSearchResults = (items: (Movie | Show)[]) => ({
