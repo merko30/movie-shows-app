@@ -29,9 +29,11 @@ const Item = ({ item }: ItemProps) => {
         <h1 className="text-white !text-lg font-medium leading-tight">
           {isMovie ? (item as Movie).title : (item as Show).name}
         </h1>
-        <span className="p-1 bg-amber-300 rounded-lg flex-none mb-1">
-          &#9733; {item.vote_average?.toFixed(2)}
-        </span>
+        {!!item.vote_average && (
+          <span className="p-1 bg-amber-300 rounded-lg flex-none mb-1">
+            &#9733; {item.vote_average?.toFixed(2)}
+          </span>
+        )}
       </div>
     </Link>
   );
