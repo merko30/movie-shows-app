@@ -54,7 +54,7 @@ const Detail = () => {
           {!loading ? (
             <>
               <span
-                className="flex items-center justify-center bg-white/80 rounded-full p-4 size-12 absolute top-10 left-5 md:left-20 z-10"
+                className="flex items-center justify-center bg-white/80 rounded-full p-4 size-12 absolute top-10 left-5 md:left-20 z-10 cursor-pointer"
                 data-testid="back"
                 onClick={() => navigate('/')}
               >
