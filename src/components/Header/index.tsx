@@ -19,8 +19,8 @@ const Header = ({ onSearch }: HeaderProps) => {
   const areMoviesSelected = activeTab === Tab.MOVIES;
 
   return (
-    <header className="container w-full p-8">
-      <div className="flex justify-between">
+    <header className="container w-full px-0 md:px-0 py-8">
+      <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-0 justify-between">
         <Search tab={activeTab} onSearch={onSearch} />
         <nav>
           <ul className="flex gap-4">
